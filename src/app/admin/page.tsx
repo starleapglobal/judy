@@ -15,6 +15,21 @@ export const metadata = {
 };
 
 export default async function AdminPage() {
+  if (!prisma) {
+    return (
+      <div className="mx-auto max-w-3xl px-4 py-16 text-center">
+        <h1 className="font-heading text-3xl md:text-4xl text-pink-800 mb-4">
+          Admin Dashboard Unavailable
+        </h1>
+        <p className="text-sm md:text-base text-emerald-900">
+          The admin dashboard requires the Prisma client and database
+          connection, which are not available in this environment. You can edit
+          content locally where the database is configured.
+        </p>
+      </div>
+    );
+  }
+
   const pages = await prisma.page.findMany({
     where: {
       slug: {
