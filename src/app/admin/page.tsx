@@ -45,7 +45,9 @@ export default async function AdminPage() {
       <div className="space-y-8">
         {PAGE_CONFIG.map((config) => {
           const page = bySlug.get(config.slug);
-          const bodySection = page?.sections.find((s) => s.key === "body");
+          const bodySection = page?.sections.find(
+            (s: PageWithSections["sections"][number]) => s.key === "body",
+          );
 
           return (
             <section
