@@ -24,7 +24,10 @@ export default async function AdminPage() {
     include: { sections: true },
   });
 
-  const bySlug = new Map(pages.map((p) => [p.slug, p]));
+  type PageWithSections = (typeof pages)[number];
+  const bySlug = new Map<string, PageWithSections>(
+    pages.map((p: PageWithSections) => [p.slug, p]),
+  );
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 md:px-6 md:py-16 space-y-10">
